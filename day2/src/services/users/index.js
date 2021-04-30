@@ -25,8 +25,11 @@ router.get('/:id', async (req, res, next) => {
 });
 router.put('/:id', async (req, res, next) => {
 	try {
-		await UserModal.findByIdAndUpdate(req.params.id, { firstName: 'Chuck' });
-		res.send('oK');
+		const modifiedUsers = await UserModal.findByIdAndUpdate(req.params.id, req.body, {
+			runValidators: true,
+			new: true,
+		});
+		res.send(modifiedUsers);
 	} catch (error) {
 		next(error);
 	}

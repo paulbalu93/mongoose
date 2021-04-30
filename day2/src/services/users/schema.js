@@ -2,10 +2,10 @@ import mongoose from 'mongoose';
 const { Schema, model } = mongoose;
 
 const userSchema = new Schema({
-	firstName: String,
-	lastName: String,
-	email: String,
-	age: Number,
+	firstName: { type: String, required: true },
+	lastName: { type: String, required: true },
+	email: { type: String, required: true },
+	age: { type: Number, required: true, min: 70, max: 70, default: 18 },
 	professions: [String],
 });
 
